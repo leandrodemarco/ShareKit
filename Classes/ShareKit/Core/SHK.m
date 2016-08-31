@@ -33,7 +33,7 @@
 #import "SHKConfiguration.h"
 #import "SHKActionSheet.h"
 #import "SHKOfflineSharer.h"
-#import "SSKeychain.h"
+#import "SAMKeychain.h"
 #import "SHKReachability.h"
 #import "SHKMail.h"
 #import "SHKItem.h"
@@ -526,14 +526,14 @@ BOOL SHKinit;
 + (NSString *)getAuthValueForKey:(NSString *)key forSharer:(NSString *)sharerId
 {
 
-    return [SSKeychain passwordForService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId]
+    return [SAMKeychain passwordForService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId]
                                   account:key
                                     error:nil ];
 }
 
 + (void)setAuthValue:(NSString *)value forKey:(NSString *)key forSharer:(NSString *)sharerId
 {
-    [SSKeychain setPassword:value
+    [SAMKeychain setPassword:value
                  forService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId]
                     account:key
                       error:nil];
@@ -541,7 +541,7 @@ BOOL SHKinit;
 
 + (void)removeAuthValueForKey:(NSString *)key forSharer:(NSString *)sharerId
 {
-    [SSKeychain deletePasswordForService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId]
+    [SAMKeychain deletePasswordForService:[NSString stringWithFormat:@"%@%@",SHKCONFIG(authPrefix),sharerId]
                                  account:key
                                    error:nil];
 }
